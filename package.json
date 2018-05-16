@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node server.js",
     "git-push": "git add -A && git commit -m '微修正' && git push origin master",
     "git-pull": "git pull origin master",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "play-sound": "^1.1.2"
+    "play-sound": "^1.1.2",
+    "youtube-dl": "^1.12.2"
   }
 }
