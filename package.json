@@ -12,7 +12,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "audio-loader": "^1.0.3",
+    "audio-play": "^2.2.0",
     "play-sound": "^1.1.2",
+    "player": "^0.6.1",
     "youtube-dl": "^1.12.2"
   }
 }
