@@ -3,6 +3,7 @@
 const express = require('express');
 const line = require('@line/bot-sdk');
 const PORT = process.env.PORT || 3000;
+const ngrok = require('ngrok');
 
 const LoopPlay = require('./loopPlay');
 const player = new LoopPlay('gJX2iy6nhHc'); //初期再生のURL
@@ -72,5 +73,8 @@ function handleEvent(event) {
     });
 }
 
-app.listen(PORT);
-console.log(`Server running at ${PORT}`);
+(async()=>{
+    app.listen(PORT);
+    const ngrokURL = await ngrok.connect(PORT);
+    console.log(`// ${ngrokURL} -> http://localhost:${PORT}`);
+})();

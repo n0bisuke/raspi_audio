@@ -15,6 +15,7 @@
   "dependencies": {
     "@line/bot-sdk": "^6.0.1",
     "express": "^4.16.3",
+    "ngrok": "^3.0.1",
     "play-sound": "^1.1.2",
     "youtube-dl": "^1.12.2"
   }
