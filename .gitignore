@@ -2,3 +2,4 @@ node_modules
 audiofile
 .DS_Store
 lineconfig.js
+playground.js
