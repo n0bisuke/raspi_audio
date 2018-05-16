@@ -14,7 +14,10 @@ app.post('/webhook', line.middleware(config), (req, res) => {
     console.log(req.body.events);
     Promise
       .all(req.body.events.map(handleEvent))
-      .then((result) => res.json(result));
+      .then((result) => res.json(result))
+      .catch(err => {
+          console.log(err);
+      });
 });
 const client = new line.Client(config);
 
@@ -32,22 +35,35 @@ function handleEvent(event) {
     }
 
     else if(event.message.text === '今の曲'){
-        mes = player.getCurrentPlay() + 'を再生中です。';
+        const currentInfo = player.getCurrentPlay();
+        mes = `${currentInfo.name}を再生中です。 \n http://www.youtube.com/watch?v=${currentInfo.id}`;
+        console.log(currentInfo);
+
+
+        return client.replyMessage(event.replyToken, [{
+            type: 'text',
+            text: mes
+        },{
+            "type": "image",
+            "originalContentUrl": currentInfo.originalContentUrl,
+            "previewImageUrl": currentInfo.previewImageUrl
+        }]);
     }
 
     else if(event.message.text === 'シャッフル'){
         player.shufflePlayList();
         mes = 'シャッフルします。次の曲からシャッフル再生です。';
     }
-
-    else if(event.message.text.length !== 11){
-        mes = 'youtubeのビデオIDを送ってね!!!';
-    }
     
     //プレイリスト更新
     else{
-        mes = '登録しました';
-        player.setPlayList(event.message.text); //プレイリスト更新
+        const videoId = player.checkYoutubeId(event.message.text);
+        if(videoId !== ''){
+            mes = '登録しました';
+            player.setPlayList(videoId); //プレイリスト更新
+        }else{
+            mes = 'プレイリストに追加するにはYoutubeのURLを送ってください。';
+        }
     }
 
     return client.replyMessage(event.replyToken, {
