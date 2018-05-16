@@ -55,25 +55,25 @@
 // console.log(mes.match(/youtu.be\/([^&]{11})/)); //
 
 
-var youtubedl = require('youtube-dl');
-var url = 'https://youtu.be/PizwcirYuGY';
+// var youtubedl = require('youtube-dl');
+// var url = 'https://youtu.be/PizwcirYuGY';
  
-var options = {
-  // Downloads available thumbnail.
-  all: false,
-  // The directory to save the downloaded files in.
-  cwd: __dirname,
-};
+// var options = {
+//   // Downloads available thumbnail.
+//   all: false,
+//   // The directory to save the downloaded files in.
+//   cwd: __dirname,
+// };
 
-let dl = youtubedl.getThumbs(url, options, function(err, files) {
-  if (err) throw err;
-  console.log('thumbnail file downloaded:', files);
-});
+// let dl = youtubedl.getThumbs(url, options, function(err, files) {
+//   if (err) throw err;
+//   console.log('thumbnail file downloaded:', files);
+// });
 
-console.log
-dl.on('info', (info) => {
-    console.log('Download started...');
-    // console.log('filename: ' + info.filename);
-    filename = info._filename;
-    // console.log('size: ' + info.size);
-});
+// console.log
+// dl.on('info', (info) => {
+//     console.log('Download started...');
+//     // console.log('filename: ' + info.filename);
+//     filename = info._filename;
+//     // console.log('size: ' + info.size);
+// });
