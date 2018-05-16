@@ -1,21 +1,17 @@
-'use strict';
+const fs = require('fs');
+const playlistPath = './playlist.txt';
+const playlisttxt = fs.readFileSync(playlistPath, 'utf8');
+let playlist = [];
 
-const player = require('./libs/playsound');
-const ytdl = require('./libs/ytdl');
+if(playlisttxt === ''){
+    playlist.push('gJX2iy6nhHc');
+    console.log('--');
+}else{
+    const videoId = 'gJX2iy6nhHc';
+    playlist = playlisttxt.split(',');
+    playlist.push(videoId);
+    playlist = playlist.filter((x, i, self) => self.indexOf(x) === i); //重複削除
+}
+console.log(playlist);
 
-let playList = ['zVQ7qd2ukn8','90AiXO1pAiA','IPSyweVhyTE'];
-let count = 1;
-let outputfile = './audiofile/output.mp4';
-
-const main = async () => {
-    console.log(`${count}曲目~`);
-    let res = '';
-    const playVideoId = playList.shift();
-    res = await ytdl(playVideoId,outputfile);
-    console.log(res);
-    console.log(`-----playlist=${playList.toString()}-----`);
-    res = await player(outputfile);
-    console.log(res);
-    main();
-};
-main();
+fs.writeFileSync(playlistPath, playlist.toString());

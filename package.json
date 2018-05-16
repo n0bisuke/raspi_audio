@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
+    "action": "node app.js",
     "git-push": "git add -A && git commit -m '微修正' && git push origin master",
     "git-pull": "git pull origin master",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,6 +13,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@line/bot-sdk": "^6.0.1",
+    "express": "^4.16.3",
     "play-sound": "^1.1.2",
     "youtube-dl": "^1.12.2"
   }
